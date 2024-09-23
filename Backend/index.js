@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const connectToMongo = require('./db');
 const router = require('./Routes/router');
+const userRoutes = require('./Routes/userRoutes');
 
 const app = express();
 const port = 3001;
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api', router); // Prefix all routes with /api
+app.use('/api/users', userRoutes); // Prefix all routes with /api
 
 // Start server
 app.listen(port, () => {
