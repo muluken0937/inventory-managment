@@ -29,7 +29,12 @@ export default function Register() {
                 navigate('/'); // Redirect to login after successful registration
             } else {
                 const errorData = await response.json();
-                setError(errorData.errors[0].msg); // Show specific error message
+                // Check if there's a message key and display that
+                if (errorData.message) {
+                    setError(errorData.message);
+                } else {
+                    setError(errorData.errors[0].msg); // Default to first error if available
+                }
                 console.log("Error during registration:", errorData);
             }
         } catch (err) {

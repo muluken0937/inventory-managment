@@ -24,8 +24,8 @@ export default function Login() {
 
             if (response.ok) {
                 const data = await response.json();
-                localStorage.setItem('authToken', data.token); // Save token in localStorage
-                navigate('/home'); // Redirect to home after successful login
+                localStorage.setItem('authToken', data.token); 
+                navigate('/home'); 
             } else {
                 const errorData = await response.json();
                 setError(errorData.message); // Show specific error message
@@ -63,7 +63,8 @@ export default function Login() {
                 <button type="submit" className="btn btn-primary w-100">Login</button>
             </form>
             <div className="mt-3 text-center">
-                <NavLink to="/register">Don't have an account? Register here.</NavLink>
+                Don't have an account? 
+                <NavLink to="/register">Register here.</NavLink>
             </div>
         </div>
     );

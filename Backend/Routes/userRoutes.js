@@ -19,14 +19,16 @@ router.post('/register', [
         .normalizeEmail(),
     
     body('password')
-        .isLength({ min: 6 })
-        .withMessage('Password must be at least 6 characters long.')
+        .isLength({ min: 8 })
+        .withMessage('Password must be at least 8 characters long.')
         .matches(/\d/)
         .withMessage('Password must contain at least one number.')
         .matches(/[A-Z]/)
         .withMessage('Password must contain at least one uppercase letter.')
+        .matches(/[!@#$%^&*(),.?":{}|<>]/)
+        .withMessage('Password must contain at least one special character.')
         .trim()
-        .escape(),
+        .escape()
 ], async (req, res) => {
     const errors = validationResult(req);
     
