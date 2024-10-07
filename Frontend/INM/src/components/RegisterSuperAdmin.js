@@ -25,7 +25,7 @@ function RegisterSuperAdmin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send a POST request to register the Super Admin
+   
       const response = await axios.post('http://localhost:3001/api/users/register-super-admin', formData);
       setMessage(response.data.message);
 

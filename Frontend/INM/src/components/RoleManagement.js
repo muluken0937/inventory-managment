@@ -4,50 +4,46 @@ import axios from 'axios';
 import UsersList from './UsersList';
 
 const RoleManagement = () => {
-  const [users, setUsers] = useState([]); // State to hold the list of users
-  const [loading, setLoading] = useState(true); // State to indicate loading status
-  const [message, setMessage] = useState(''); // State to show success or failure messages
-  const [error, setError] = useState(null); // State to hold error messages
+  const [users, setUsers] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState(null); 
 
-  const token = localStorage.getItem('token'); // Retrieve the JWT from local storage
-
-  // Function to fetch all users from the server, wrapped in useCallback to prevent re-creation
+  const token = localStorage.getItem('token'); 
+  
   const fetchUsers = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:3001/api/users', {
         headers: { Authorization: `Bearer ${token}` }, // Attach the token to the request
       });
-      setUsers(response.data); // Set the state with the fetched users
-      setLoading(false); // Set loading to false once data is fetched
+      setUsers(response.data); 
+      setLoading(false); 
     } catch (error) {
       setError('Failed to fetch users');
       console.error(error);
-      setLoading(false); // Set loading to false if an error occurs
+      setLoading(false); 
     }
-  }, [token]); // Add dependencies that `fetchUsers` relies on
-
+  }, [token]); 
   useEffect(() => {
-    fetchUsers(); // Fetch users when the component mounts
-  }, [fetchUsers]); // `fetchUsers` won't change on every render due to useCallback
-
-  // Function to grant admin privileges to a user
+    fetchUsers(); 
+  }, [fetchUsers]); 
   const handleGrantAdmin = async (userId) => {
     await updateRole(userId, 'grant-admin');
   };
 
-  // Function to revoke admin privileges from a user
+
   const handleRevokeAdmin = async (userId) => {
     await updateRole(userId, 'revoke-admin');
   };
 
-  // Function to update the user's role
+  
   const updateRole = async (userId, action) => {
     try {
       await axios.patch(`http://localhost:3001/api/users/${action}/${userId}`, {}, {
-        headers: { Authorization: `Bearer ${token}` }, // Attach the token to the request
+        headers: { Authorization: `Bearer ${token}` }, 
       });
       setMessage(`Successfully ${action === 'grant-admin' ? 'granted' : 'revoked'} admin privileges`);
-      fetchUsers(); // Refresh the user list after updating role
+      fetchUsers(); 
     } catch (error) {
       setError(`Failed to ${action === 'grant-admin' ? 'grant' : 'revoke'} admin privileges`);
       console.error(error);
@@ -61,7 +57,7 @@ const RoleManagement = () => {
         headers: { Authorization: `Bearer ${token}` }, // Attach the token to the request
       });
       setMessage('User deleted successfully');
-      fetchUsers(); // Refresh the user list after deleting a user
+      fetchUsers(); 
     } catch (error) {
       setError('Failed to delete user');
       console.error(error);
