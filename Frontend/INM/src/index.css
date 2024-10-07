@@ -1,3 +1,18 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+/* Global Styles */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +25,32 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Navbar Styles */
+.navbar {
+  padding: 1rem; /* Add some padding to the navbar */
+}
+
+.nav-link {
+  color: #ffffff; /* Set default color for links */
+  transition: color 0.3s, background-color 0.3s; /* Smooth transition for color change */
+}
+
+.nav-link:hover {
+  color: #ffeb3b !important; /* Yellowish hover color */
+  background-color: rgba(255, 255, 255, 0.1); /* Slight background change on hover */
+}
+
+/* Active route highlighting */
+.active-route {
+  color: #ffeb3b !important; /* Highlight color for the active route */
+  font-weight: bold; /* Make the active route text bold */
+  border-bottom: 2px solid #ffeb3b; /* Add a bottom border to indicate active route */
+}
+
+/* Dropdown menu styles */
+.dropdown-item:hover {
+  background-color: rgba(255, 235, 59, 0.2); /* Light yellow background on hover */
+  color: #212529 !important; /* Dark text color on hover */
 }

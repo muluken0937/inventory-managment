@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { FaSearch } from 'react-icons/fa'; // Import the search icon
 
 export default function Products() {
   const [productData, setProductData] = useState([]);
@@ -67,9 +68,7 @@ export default function Products() {
 
   const filteredProducts = productData.filter(
     (product) =>
-      product.ProductBarcode.toLowerCase().includes(
-        searchQuery.toLowerCase()
-      ) ||
+      product.ProductBarcode.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.ProductName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.ProductPrice.toString().includes(searchQuery)
   );
@@ -77,20 +76,28 @@ export default function Products() {
   return (
     <div className="container-fluid p-5">
       <h1>Products Inventory</h1>
-      <div className="d-flex justify-content-between mb-3">
+      <div className="d-flex justify-content-between align-items-center mb-3">
         {/* Add product button, visible for both users and admins */}
         <NavLink to="/insertproduct" className="btn btn-primary fs-5">
           {" "}
           + Add New Product
         </NavLink>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Search by Name, Price or Barcode"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ width: "200px" }}
-        />
+
+        {/* Search input with icon */}
+        <div className="d-flex align-items-center">
+          <div className="input-group" style={{ width: "300px" }}>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search by Name, Price or Barcode"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <span className="input-group-text">
+              <FaSearch />
+            </span>
+          </div>
+        </div>
       </div>
       <div className="overflow-auto mt-3" style={{ maxHeight: "38rem" }}>
         <table className="table table-striped table-hover mt-3 fs-5">
@@ -102,7 +109,9 @@ export default function Products() {
               <th scope="col">Product Barcode</th>
               <th scope="col">Update</th>
               {/* Only show the Delete column if the role is admin or superadmin */}
-              {(role === "Admin" || role === "Super Admin") && <th scope="col">Delete</th>}
+              {(role === "Admin" || role === "Super Admin") && (
+                <th scope="col">Delete</th>
+              )}
             </tr>
           </thead>
           <tbody>
