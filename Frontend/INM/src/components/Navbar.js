@@ -1,3 +1,6 @@
+
+
+
 import React from 'react';
 import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 
@@ -5,41 +8,68 @@ const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const role = localStorage.getItem('role'); 
+
     const handleLogout = () => {
-        // Clear token and role from local storage
         localStorage.removeItem('token');
         localStorage.removeItem('role');
-        
-        // Redirect to the login page
+        localStorage.removeItem('user');  
         navigate('/');
     };
 
-    // Check if the current path is the login or register page
     const isAuthPage = location.pathname === '/' || location.pathname === '/register';
 
     return (
         <nav className="navbar navbar-expand-lg bg-dark">
             <div className="container-fluid">
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                {/* Options dropdown on the left side */}
+                {!isAuthPage && (
+                    <ul className="navbar-nav ms-0 mb-2 mb-lg-0">
+                        <li className="nav-item dropdown">
+                            <button
+                                className="btn btn-outline-light dropdown-toggle fs-5"
+                                type="button"
+                                id="userOptionsDropdown"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                Options
+                            </button>
+                            <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="userOptionsDropdown">
+                                <li className="dropdown-item text-white fs-5">Role: {role}</li>
+
+                                {/* Conditionally render User List for Super Admin only */}
+                                {role === 'Super Admin' && (
+                                    <li>
+                                        <NavLink className="dropdown-item text-white fs-5" to="/user-management">
+                                            User List
+                                        </NavLink>
+                                    </li>
+                                )}
+
+                                {/* Logout button inside the dropdown menu */}
+                                <li>
+                                    <button
+                                        className="dropdown-item text-danger fs-5"
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                )}
+
+                {/* Navbar links for Products, About, and Inventory Management System */}
+                <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                        {/* Inventory Management System branding moved to the right */}
                         <li className="nav-item">
                             <NavLink className="nav-link active text-white fs-4" to="/home">
                                 Inventory Management System
                             </NavLink>
                         </li>
-                    </ul>
-                    <ul className="navbar-nav mb-2 mb-lg-0">
                         <li className="nav-item">
                             <NavLink className="nav-link active text-white fs-4" to="/products">
                                 Products
@@ -50,17 +80,6 @@ const Navbar = () => {
                                 About
                             </NavLink>
                         </li>
-                        {/* Conditionally render logout button if not on login or register page */}
-                        {!isAuthPage && (
-                            <li className="nav-item">
-                                <button 
-                                    className="btn btn-danger fs-5 ms-3" 
-                                    onClick={handleLogout}
-                                >
-                                    Logout
-                                </button>
-                            </li>
-                        )}
                     </ul>
                 </div>
             </div>
@@ -69,3 +88,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

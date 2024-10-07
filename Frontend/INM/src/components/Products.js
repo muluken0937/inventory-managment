@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -100,8 +101,8 @@ export default function Products() {
               <th scope="col">Product Price</th>
               <th scope="col">Product Barcode</th>
               <th scope="col">Update</th>
-              {/* Only show the Delete column if the role is admin */}
-              {role === "admin" && <th scope="col">Delete</th>}
+              {/* Only show the Delete column if the role is admin or superadmin */}
+              {(role === "Admin" || role === "Super Admin") && <th scope="col">Delete</th>}
             </tr>
           </thead>
           <tbody>
@@ -123,8 +124,8 @@ export default function Products() {
                     </NavLink>
                   </td>
 
-                  {/* Render delete button only if the role is 'admin' */}
-                  {role === "admin" && (
+                  {/* Render delete button only if the role is 'admin' or 'superadmin' */}
+                  {(role === "Admin" || role === "Super Admin") && (
                     <td>
                       <button
                         className="btn btn-danger"
