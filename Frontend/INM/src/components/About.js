@@ -5,7 +5,7 @@ export default function About() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 200) {  // Adjust the value based on when you want the button to appear
+    if (window.scrollY > 200) {
       setShowScrollTop(true);
     } else {
       setShowScrollTop(false);
@@ -38,14 +38,10 @@ export default function About() {
         <div className="about-image">
           <img src="240_F_783000046_dkIfbX1h7jUeGLFEPVFozAstL56l204L.jpg" alt="About" />
         </div>
-        <p className="about-description">
-          Welcome to our company. We are dedicated to providing the best services to our customers. 
-          Our team is passionate about making a difference and achieving excellence in all that we do. 
-          This section can include more information about your company's mission, values, and history.
-        </p>
-        <p className="about-description">
-          Additional content can be added here. This text will continue to scroll if it exceeds the viewport height.
-        </p>
+        <div className="about-description">
+          <p>Welcome to our company. We are dedicated to providing the best services to our customers. Our team is passionate about making a difference and achieving excellence in all that we do.</p>
+          <p>This section can include more information about your company's mission, values, and history. Additional content can be added here. This text will continue to scroll if it exceeds the viewport height.</p>
+        </div>
       </div>
       {showScrollTop && (
         <button className="scroll-top-button" onClick={scrollToTop}>

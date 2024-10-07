@@ -6,6 +6,7 @@ const cors = require('cors');
 const connectToMongo = require('./db');
 const router = require('./Routes/router');
 const userRoutes = require('./Routes/userRoutes');
+const requestRoutes = require('./Routes/requestRoutes');
 require('dotenv').config(); // Load environment variables from .env file
 
 // Initialize express app
@@ -24,6 +25,7 @@ app.use(express.json()); // Parse JSON bodies for POST requests
 // Define routes
 app.use('/api', router); // Use general router for /api routes
 app.use('/api/users', userRoutes); // Use user-specific routes for /api/users
+app.use('/api/requests', requestRoutes); 
 
 // Start the server
 app.listen(port, () => {
