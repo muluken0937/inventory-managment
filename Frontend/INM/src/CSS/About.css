@@ -1,0 +1,174 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Arial', sans-serif; /* Use a modern font */
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.about-container {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.about-background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(50%); /* Darken the video for better text readability */
+}
+
+.about-content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  padding: 40px 20px;
+  max-width: 900px; /* Increase max-width for better readability */
+  margin: auto; 
+  background: rgba(0, 0, 0, 0.7); /* More opaque background for better text readability */
+  border-radius: 10px;
+  margin-top: 100px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); /* Adds a shadow for depth */
+}
+
+.about-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase; 
+}
+
+.about-image {
+  margin: 20px 0; /* Add some margin for spacing */
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  transition: transform 0.3s ease; 
+}
+
+.about-image img:hover {
+  transform: scale(1.1); /* Slightly zoom image on hover */
+}
+
+.about-description {
+  font-size: 1.25rem;
+  margin-bottom: 100px; 
+  line-height: 1.6; 
+}
+
+.scroll-top-button {
+  position: fixed;
+  bottom: 20px; 
+  right: 20px;  
+  background-color: #007bff; 
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.scroll-top-button.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top-button:hover {
+  background-color: #0056b3; 
+  transform: scale(1.1); 
+}
+
+/* Additional Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 2.5rem; /* Smaller title for mobile */
+  }
+
+  .about-description {
+    font-size: 1rem; /* Adjust font size for smaller screens */
+  }
+}
+/* Add your existing CSS here */
+
+
+
+/* Mission and Vision Sections */
+.mission-section,
+.vision-section {
+  background: rgba(255, 255, 255, 0.95); /* Light background for better contrast */
+  border-radius: 10px;
+  padding: 30px; /* Increase padding for more breathing space */
+  margin: 40px auto; /* Increase margin to isolate the sections */
+  width: 70%; /* Reduce the width */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3); /* Increased shadow for depth */
+  max-width: 800px; /* Limit maximum width */
+}
+
+.section-title {
+  font-size: 2.5rem; /* Increase font size for more emphasis */
+  margin-bottom: 25px; /* Increased spacing below the title */
+  color: #0056b3; /* A deeper blue for better contrast */
+  text-transform: uppercase; /* Uppercase for emphasis */
+}
+
+.mission-content,
+.vision-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #333; /* Darker text color */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Add subtle shadow to the text */
+}
+
+.mission-image,
+.vision-image {
+  width: 180px; /* Increase image size slightly */
+  border-radius: 10px;
+  margin-right: 25px; /* Increase space between image and text */
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.mission-image:hover,
+.vision-image:hover {
+  transform: scale(1.1); /* Slightly zoom image on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mission-section,
+  .vision-section {
+    width: 90%; /* Wider on smaller screens */
+  }
+
+  .mission-content,
+  .vision-content {
+    flex-direction: column; /* Stack vertically on smaller screens */
+    align-items: center;
+  }
+
+  .mission-image,
+  .vision-image {
+    width: 120px; /* Smaller image for mobile screens */
+    margin-bottom: 15px; /* Add margin below image on smaller screens */
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './About.css';
+import '../CSS/About.css';
 
 export default function About() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -41,6 +41,24 @@ export default function About() {
         <div className="about-description">
           <p>Welcome to our company. We are dedicated to providing the best services to our customers. Our team is passionate about making a difference and achieving excellence in all that we do.</p>
           <p>This section can include more information about your company's mission, values, and history. Additional content can be added here. This text will continue to scroll if it exceeds the viewport height.</p>
+        </div>
+
+        {/* Mission Section */}
+        <div className="mission-section">
+          <h2 className="section-title">Our Mission</h2>
+          <div className="mission-content">
+            <img src="download (6).jpg" alt="Mission" className="mission-image" />
+            <p>Our mission is to empower businesses with innovative inventory management solutions that drive efficiency and growth.</p>
+          </div>
+        </div>
+
+        {/* Vision Section */}
+        <div className="vision-section">
+          <h2 className="section-title">Our Vision</h2>
+          <div className="vision-content">
+            <img src="download (7).jpg" alt="Vision" className="vision-image" />
+            <p>Our vision is to be the leading provider of inventory management solutions, recognized for our commitment to quality and customer satisfaction.</p>
+          </div>
         </div>
       </div>
       {showScrollTop && (

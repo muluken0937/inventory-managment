@@ -1,0 +1,91 @@
+/* General container styling */
+.home-container {
+  position: relative;
+  padding-top: 50px; /* Space for the navbar */
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* Carousel in the background */
+#backgroundCarousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  z-index: -1;
+}
+
+#backgroundCarousel .carousel-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: brightness(0.7); /* Slight darkening for better contrast with the text */
+}
+
+/* Front section (text and image) */
+.front-section {
+  position: relative;
+  z-index: 1;
+  height: 80vh; /* Full height of the section */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlay content (text and image) */
+.overlay-content {
+  background-color: rgba(255, 255, 255, 0.8); /* White background with transparency */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+}
+
+/* Make the image cover the full height of the front section */
+.overlay-content img {
+  height: 129%; /* Image takes up the full height of the container */
+  width: auto;  /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers the container */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: -14px;
+
+  /* Apply fade effect to all edges */
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 90%);
+}
+
+/* Stack image and text vertically on smaller screens */
+@media (max-width: 768px) {
+  .overlay-content {
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .overlay-content img {
+    margin-top: 20px;
+    max-width: 100%; /* On smaller screens, make the image responsive */
+    height: auto; /* Ensure it doesn't stretch */
+  }
+}
+
+/* Call to Action Button (smaller size) */
+.btn-md {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+/* Footer */
+footer {
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}

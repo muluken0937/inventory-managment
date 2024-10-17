@@ -1,23 +1,39 @@
-
+/* General body styling */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-top: 70px; /* Adjust padding for fixed navbar */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 /* Navbar Styles */
 .navbar {
-  padding: 1rem; /* Add some padding to the navbar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background-color: #343a40; /* Dark background for the navbar */
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for depth */
 }
 
+.navbar-brand {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-left: 10px;
+  transition: color 0.3s;
+}
+
+.navbar-brand:hover {
+  color: #f2e571; /* Same yellow as active route on hover */
+}
 
 .nav-link {
   color: #ffffff; /* Set default color for links */
@@ -25,19 +41,53 @@ code {
 }
 
 .nav-link:hover {
-  color: #ffeb3b !important; /* Yellowish hover color */
+  color: #a3a083 !important; /* Yellowish hover color */
   background-color: rgba(255, 255, 255, 0.1); /* Slight background change on hover */
+  border-radius: 5px; /* Add rounded corners to hover effect */
+  padding: 0.5rem; /* Slight padding on hover for a smoother effect */
 }
 
 /* Active route highlighting */
 .active-route {
-  color: #ffeb3b !important; /* Highlight color for the active route */
+  color: #f2e571 !important; /* Highlight color for the active route */
   font-weight: bold; /* Make the active route text bold */
-  border-bottom: 2px solid #ffeb3b; /* Add a bottom border to indicate active route */
+  border-bottom: 2px solid #d8c51b; /* Add a bottom border to indicate active route */
+  padding-bottom: 0.2rem; /* Add slight padding to adjust the border */
 }
 
 /* Dropdown menu styles */
+.dropdown-menu {
+  background-color: #343a40; /* Match navbar background */
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Add shadow to dropdown */
+}
+
+.dropdown-item {
+  color: #ffffff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
 .dropdown-item:hover {
   background-color: rgba(255, 235, 59, 0.2); /* Light yellow background on hover */
   color: #212529 !important; /* Dark text color on hover */
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding-top: 60px; /* Reduce padding for mobile view */
+  }
+
+  .navbar {
+    padding: 0.5rem; /* Reduce padding on navbar for mobile */
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem; /* Smaller font size on mobile */
+  }
+
+  .nav-link {
+    padding: 0.4rem; /* Adjust padding for better mobile spacing */
+  }
 }
