@@ -1,9 +1,8 @@
-
-
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
-import UsersList from './UsersList';
+import UsersList from './UsersList'; // Import UsersList component
 import { FaSearch } from 'react-icons/fa'; // Import search icon from react-icons
+import '../CSS/RoleManagement.css'; // Ensure to import your CSS for styling
 
 const RoleManagement = () => {
   const [users, setUsers] = useState([]); 
@@ -11,6 +10,7 @@ const RoleManagement = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState(null); 
   const [searchQuery, setSearchQuery] = useState(''); // State for the search query
+  const [showPopup, setShowPopup] = useState(false); // State to control popup visibility
 
   const token = localStorage.getItem('token'); 
   
@@ -46,6 +46,7 @@ const RoleManagement = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage(`Successfully ${action === 'grant-admin' ? 'granted' : 'revoked'} admin privileges`);
+      setShowPopup(true); // Show popup on successful action
       fetchUsers(); 
     } catch (error) {
       setError(`Failed to ${action === 'grant-admin' ? 'grant' : 'revoke'} admin privileges`);
@@ -59,6 +60,7 @@ const RoleManagement = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('User deleted successfully');
+      setShowPopup(true); // Show popup on successful deletion
       fetchUsers(); 
     } catch (error) {
       setError('Failed to delete user');
@@ -66,15 +68,19 @@ const RoleManagement = () => {
     }
   };
 
-  // Filter users based on search query
-  const filteredUsers = users.filter(user =>
-    user.email.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filter users based on search query and sort them
+  const filteredUsers = users
+    .filter(user => user.email.toLowerCase().includes(searchQuery.toLowerCase()))
+    .sort((a, b) => {
+      // Sort Super Admin first, then sort by username
+      if (a.role === 'Super Admin') return -1;
+      if (b.role === 'Super Admin') return 1;
+      return a.username.localeCompare(b.username);
+    });
 
   return (
     <div className="container mt-4">
       <h1 className="text-center text-2xl font-bold mb-4">Role Management</h1>
-      {message && <p className="alert alert-success">{message}</p>}
       {loading ? (
         <div className="text-center">
           <p className="text-muted">Loading...</p>
@@ -83,11 +89,11 @@ const RoleManagement = () => {
         <p className="alert alert-danger">{error}</p>
       ) : (
         <>
-          <div className="mb-3 d-flex justify-content-end"> {/* Align items to the right */}
-            <div className="input-group" style={{ width: '220px' }}> {/* Set a specific width */}
+          <div className="mb-3 d-flex justify-content-end">
+            <div className="input-group" style={{ width: '220px' }}>
               <input
                 type="text"
-                className="form-control" // Add Bootstrap class for styling
+                className="form-control"
                 placeholder="Search by email"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -97,14 +103,20 @@ const RoleManagement = () => {
               </span>
             </div>
           </div>
-          
-          {/* Pass filtered users to UsersList */}
+
+          {/* Use UsersList component to display the list of users */}
           <UsersList
-            users={filteredUsers} // Use filteredUsers instead of users
+            users={filteredUsers} // Pass filtered users
             onGrantAdmin={handleGrantAdmin}
             onRevokeAdmin={handleRevokeAdmin}
             onDeleteUser={handleDeleteUser}
           />
+
+          {showPopup && (
+            <div className={`popup ${error ? 'alert-danger' : 'alert-success'}`}>
+              {message}
+            </div>
+          )}
         </>
       )}
     </div>

@@ -1,0 +1,84 @@
+/* RoleManagement.css */
+
+/* Styling for the popup message at the bottom left */
+.popup {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #28a745; /* Use a green color for success messages */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    animation: fadeOut 10s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Styling for the table */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse; /* Ensure borders are collapsed */
+}
+
+thead {
+    background-color: #343a40; /* Dark background for the header */
+    color: white;
+}
+
+th, td {
+    padding: 12px; /* Add padding for table cells */
+    text-align: left; /* Align text to the left */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+.btn {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap red */
+    color: white;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap blue */
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Bootstrap gray */
+    color: white;
+}
+
+/* Additional button styles for better visibility */
+.btn:hover {
+    opacity: 0.8; /* Slightly fade buttons on hover */
+    transition: opacity 0.2s; /* Transition for smooth effect */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
+.equal-size-btn {
+    width: 50%; /* Makes the button take the full width */
+    padding: 10px; /* Adjust the padding as needed */
+    font-size: 1px; /* Set a consistent font size */
+}

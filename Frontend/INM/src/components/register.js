@@ -208,7 +208,8 @@ export default function Register() {
         </button>
       </form>
       <div className="mt-3 text-center">
-        <NavLink to="/">Already have an account? Log in here.</NavLink>
+      Already have an account?   
+        <NavLink to="/">Log in here.</NavLink>
       </div>
     </div>
   );
